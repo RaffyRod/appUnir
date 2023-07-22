@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {PersistenciaService} from './../../services/persistencia.service';
 
 @Component({
   selector: 'app-crear-citas',
@@ -20,13 +21,29 @@ export class CrearCitasComponent  implements OnInit {
     descripcion: ['']
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private persistencia: PersistenciaService
+  ) { }
 
   ngOnInit() {}
 
   submitForm() {
     const formData = this.eventoForm.value;
-    console.log(formData);
+    this.crearCita(formData);
+  }
+
+  crearCita(cita:any){
+    this.persistencia.crearCita(cita);
+  }
+
+  getTipoCitas(){
+    let tipos = [
+      "Cita",
+      "Aniversario",
+      "Cuenta Atras"
+    ]
+    return tipos;
   }
 
 }

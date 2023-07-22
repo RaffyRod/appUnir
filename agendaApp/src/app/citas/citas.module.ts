@@ -15,7 +15,7 @@ import { CrearCitasComponent } from './crear-citas/crear-citas.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule
+    IonicModule,
   ]
 })
 export class CitasModule { }

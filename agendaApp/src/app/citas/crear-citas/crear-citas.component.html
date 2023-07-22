@@ -8,7 +8,12 @@
 
     <ion-item>
       <ion-label>Tipo de evento:</ion-label>
-      <ion-input formControlName="tipoEvento" required></ion-input>
+      <!-- <ion-input formControlName="tipoEvento" required></ion-input> -->
+      <ion-item>
+        <ion-select formControlName="tipoEvento" value="Cita" required>
+          <ion-select-option *ngFor="let item of getTipoCitas()">{{item}}</ion-select-option>
+        </ion-select>
+      </ion-item>
     </ion-item>
 
     <ion-item>

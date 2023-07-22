@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PersistenciaService} from './../../services/persistencia.service';
 
 @Component({
   selector: 'app-ver-citas',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerCitasComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private persistencia:PersistenciaService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.verCitas())
+  }
+
+  verCitas(){
+    let citas = this.persistencia.getCitas();
+    return citas
+  }
 
 }
