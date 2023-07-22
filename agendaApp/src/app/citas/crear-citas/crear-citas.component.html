@@ -1,0 +1,36 @@
+
+<ion-content color="light">
+  <form [formGroup]="eventoForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Nombre del evento:</ion-label>
+      <ion-input formControlName="nombreEvento" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo de evento:</ion-label>
+      <ion-input formControlName="tipoEvento" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha inicio:</ion-label>
+      <ion-datetime formControlName="fechaInicio" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de fin:</ion-label>
+      <ion-datetime formControlName="fechaFin" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Todo el día:</ion-label>
+      <ion-checkbox formControlName="todoElDia"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripción:</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Guardar Cita</ion-button>
+  </form>
+</ion-content>
