@@ -8,15 +8,16 @@ import {PersistenciaService} from './../../services/persistencia.service';
 })
 export class VerCitasComponent  implements OnInit {
 
+  citas:any = [];
   constructor(private persistencia:PersistenciaService) { }
 
   ngOnInit() {
-    console.log(this.verCitas())
+    this.verCitas();
   }
 
   verCitas(){
-    let citas = this.persistencia.getCitas();
-    return citas
+    this.citas = this.persistencia.getCitas();
+    return this.citas;
   }
 
 }

@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { from, Observable } from 'rxjs';
-import { map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersistenciaService {
- 
-  private _storage: Storage | null = null;
 
 
   private citas: any = [];
-  constructor(private ionicStorage: Storage) {
-    this.init();
+  constructor(private storage: Storage) {
+    this.initStorage();
   }
 
-  async init() {
-    // If using, define drivers here: await this.storage.defineDriver(/*...*/);
-    const storage = await this.ionicStorage.create();
-    this._storage = storage;
+  async initStorage() {
+    const storage = await this.storage.create();
+    const citas = await storage.get('citas');
+    this.citas = citas || [];
   }
 
   getCitas(){
@@ -28,5 +24,6 @@ export class PersistenciaService {
 
   crearCita(cita:any){
     this.citas.push(cita);
+    this.storage.set('citas',this.citas);
   }
 }
