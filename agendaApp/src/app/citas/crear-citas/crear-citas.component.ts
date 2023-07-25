@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {PersistenciaService} from './../../services/persistencia.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-citas',
@@ -23,18 +24,22 @@ export class CrearCitasComponent  implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private persistencia: PersistenciaService
+    private persistencia: PersistenciaService,
+    private router: Router
   ) { }
 
   ngOnInit() {}
 
   submitForm() {
     const formData = this.eventoForm.value;
-    this.crearCita(formData);
+    this.crearCita(formData).then((result) => {
+      this.router.navigate(['tabs/tab2']);
+    })
+
   }
 
-  crearCita(cita:any){
-    this.persistencia.crearCita(cita);
+  async crearCita(cita:any){
+    await this.persistencia.crearCita(cita);
   }
 
   getTipoCitas(){

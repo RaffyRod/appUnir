@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class PersistenciaService {
 
+  private _storage: Storage | null = null;
+
 
   private citas: any = [];
   constructor(private storage: Storage) {
@@ -14,16 +16,18 @@ export class PersistenciaService {
 
   async initStorage() {
     const storage = await this.storage.create();
-    const citas = await storage.get('citas');
-    this.citas = citas || [];
+    this._storage = storage;
   }
 
-  getCitas(){
-    return this.citas;
-  }
-
-  crearCita(cita:any){
+  async crearCita(cita:any){
+    this.citas = [];
+    this.citas = await this.storage.get('citas');
     this.citas.push(cita);
-    this.storage.set('citas',this.citas);
+    await this.storage.set('citas',this.citas)
   }
+
+  async getCitas(){
+    return  await this.storage.get('citas');
+  }
+
 }
