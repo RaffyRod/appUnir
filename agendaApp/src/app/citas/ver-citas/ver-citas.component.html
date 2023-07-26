@@ -1,6 +1,6 @@
 <ion-content color="light">
   <ion-list [inset]="true">
-    <ion-item *ngFor="let cita of citas">
+    <ion-item *ngFor="let cita of (citas | async)">
       <ion-label>{{cita.nombreEvento}}</ion-label>
       <ion-button (click)="verCita(cita)">Ver</ion-button>
     </ion-item>

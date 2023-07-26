@@ -9,12 +9,13 @@ import {PersistenciaService} from './../../services/persistencia.service';
 export class VerCitasComponent  implements OnInit {
 
   cita:any;
-  citas:any = [];
   isModalOpen:any = false;
+
+  public citas = this.persistencia.citas;
+
   constructor(private persistencia:PersistenciaService) { }
 
   ngOnInit() {
-    this.verCitas();
   }
 
   setOpen(isOpen: boolean) {
@@ -28,11 +29,6 @@ export class VerCitasComponent  implements OnInit {
     this.cita.fechaInicio = fechaInicio.toLocaleString();
     this.cita.fechaFin = fechaFin.toLocaleString();
     this.setOpen(true);
-  }
-
-  async verCitas(){
-    this.citas = await this.persistencia.getCitas();
-    return this.citas;
   }
 
 }

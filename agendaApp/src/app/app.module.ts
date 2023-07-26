@@ -17,7 +17,7 @@ import { Drivers } from '@ionic/storage';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: 'citas',
-      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
+      driverOrder: [Drivers.LocalStorage]
     }),
     AppRoutingModule,
   ],
